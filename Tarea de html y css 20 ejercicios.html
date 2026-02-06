@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Y CSSS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">MiComtenido</div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#perfil">Perfil</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <header id="inicio" class="hero-section">
+        <div class="hero-content">
+            <h1>Bienvenido al Desarrollo Web</h1>
+            <p>Aprendiendo a construir el futuro línea por línea.</p>
+            <a href="#contacto" class="btn-cta">Contáctame Ahora</a>
+        </div>
+    </header>
+
+    <main>
+        
+        <section id="perfil" class="seccion-perfil">
+            <h2>Mi Perfil Profesional</h2>
+            <div class="tarjeta-perfil">
+                <div class="header-perfil"></div>
+                <img src="https://shapes.inc/api/public/avatar/yoojoonghyuk-8636" alt="Foto de Perfil" class="avatar-perfil">
+                <div class="body-perfil">
+                    <h3>Wilder Chacin</h3>
+                    <p>Experto Programador</p>
+                    <p>Pasa el mouse aquí: <span data-tooltip="¡Soy un experto en CSS!" class="texto-tooltip">Info Secreta</span></p>
+                    <div class="redes-sociales">
+                        <span>GitHub</span>
+                
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="container">
+            <h2>Mis Servicios</h2>
+            <div class="grid-servicios">
+                <article class="card-servicio">
+                    <h3>Diseño</h3>
+                    <p>Creación de interfaces modernas y atractivas.</p>
+                </article>
+                <article class="card-servicio">
+                    <h3>Frontend</h3>
+                    <p>Código limpio usando HTML CSS y JS.</p>
+                </article>
+                <article class="card-servicio">
+                    <h3>Backend</h3>
+                    <p>Bases de datos y lógica de servidor.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="noticias-grid">
+            <div class="area-header"><h3>Últimas Noticias </h3></div>
+            <div class="area-sidebar">Barra Lateral</div>
+            <div class="area-content">
+                <p>Este contenido está organizado usando CSS. Es mucho más potente que las tablas antiguas para maquetar sitios complejos.</p>
+            </div>
+            <div class="area-footer">Pie de noticia</div>
+        </section>
+
+        <section class="galeria">
+            <h2>Galería de Proyectos</h2>
+            <div class="contenedor-imagenes">
+                <figure>
+                    <img src="https://picsum.photos/300/200?random=1" alt="Proyecto 1">
+                    <figcaption>Proyecto A</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://picsum.photos/300/200?random=2" alt="Proyecto 2">
+                    <figcaption>Proyecto B</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://picsum.photos/300/200?random=3" alt="Proyecto 3">
+                    <figcaption>Proyecto C</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2>Tabla de Precios</h2>
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Plan</th>
+                        <th>Precio</th>
+                        <th>Características</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Básico</td>
+                        <td>$10</td>
+                        <td>HTML + CSS</td>
+                    </tr>
+                    <tr>
+                        <td>Pro</td>
+                        <td>$25</td>
+                        <td>HTML + CSS + JS</td>
+                    </tr>
+                    <tr>
+                        <td>Experto</td>
+                        <td>$50</td>
+                        <td>Full </td>
+                    </tr>
+                    <tr>
+                        <td>Empresa</td>
+                        <td>$100</td>
+                        <td>Soporte 24/7</td>
+                    </tr>
+                    <tr>
+                        <td>VIP</td>
+                        <td>$200</td>
+                        <td>Consultoría</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div style="text-align: center; margin: 50px 0;">
+            <p>Cargando próximo nivel...</p>
+            <div class="loader-animado"></div>
+        </div>
+
+        <section id="contacto" class="seccion-contacto">
+            <h2>Contáctame</h2>
+            <form action="#" class="formulario">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="tu@correo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="btn-cta">Enviar Mensaje</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Master Class Web. Todos los derechos reservados.</p>
+    </footer>
+
+    <a href="#inicio" class="btn-subir" title="Volver al inicio">⬆</a>
+
+</body>
+</html>
