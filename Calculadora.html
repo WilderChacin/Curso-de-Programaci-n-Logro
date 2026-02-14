@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Científica - Justicia para Gojo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
+
+        body, html { 
+            height: 100%; width: 100%; 
+            background-color: #000; 
+            overflow: hidden; 
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        /* FONDO DE VIDEO */
+        .video-background {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        #player {
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            opacity: 0.6;
+            transform: scale(1.5); /* Para eliminar bordes de YouTube */
+        }
+
+        /* TEXTO PARA EL PROFE */
+        .mensaje-profe {
+            position: absolute;
+            top: 10%;
+            width: 80%;
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            z-index: 10;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000;
+            text-transform: uppercase;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* CALCULADORA ESTILO GOJO (INFINITE VOID) */
+        .calculator {
+            position: relative;
+            background: rgba(10, 10, 10, 0.9);
+            padding: 25px;
+            border-radius: 20px;
+            border: 2px solid #00a2ff;
+            box-shadow: 0 0 30px #00a2ff;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            width: 350px;
+        }
+
+        #screen {
+            width: 100%;
+            height: 65px;
+            background: #000;
+            color: #00a2ff;
+            border: 1px solid #00a2ff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 30px;
+            text-align: right;
+            padding: 10px;
+            outline: none;
+        }
+
+        .row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+
+        button {
+            width: 60px;
+            height: 50px;
+            border: none;
+            border-radius: 8px;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #00a2ff;
+            color: #000;
+            box-shadow: 0 0 15px #00a2ff;
+        }
+
+        .btn-sci { color: #00a2ff; }
+        .btn-ac { background: #ff3131; }
+        .btn-del { background: #ff9100; }
+        .btn-equal { background: #00a2ff; color: #000; width: 130px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="video-background">
+        <iframe id="player" 
+            src="https://www.youtube.com/embed/44pt8w67S8I?autoplay=1&mute=1&loop=1&playlist=44pt8w67S8I&controls=0&showinfo=0&rel=0&enablejsapi=1" 
+            frameborder="0" allow="autoplay; encrypted-media">
+        </iframe>
+    </div>
+
+    <div class="mensaje-profe">
+        !GOJO MERECIA GANAR, SUKUNA TUVO UNA VICTORIA SIN SENTIDO Y REGALADA, NO ESTE TAN ARDIDO PROFE!!!!!
+    </div>
+
+    <div class="calculator">
+        <input type="text" id="screen" placeholder="0" readonly>
+        
+        <div class="row">
+            <button class="btn-ac" onclick="screen.value=''">AC</button>
+            <button class="btn-del" onclick="backspace()">DEL</button>
+            <button class="btn-sci" onclick="sci('sin')">sin</button>
+            <button class="btn-sci" onclick="sci('cos')">cos</button>
+            <button class="btn-sci" onclick="sci('tan')">tan</button>
+        </div>
+
+        <div class="row">
+            <button class="btn-sci" onclick="sci('pow')">x²</button>
+            <button class="btn-sci" onclick="sci('sqrt')">√</button>
+            <button class="btn-sci" onclick="sci('log')">log</button>
+            <button class="btn-sci" onclick="screen.value+=Math.PI.toFixed(4)">π</button>
+            <button class="btn-sci" onclick="screen.value+=Math.E.toFixed(4)">e</button>
+        </div>
+
+        <div class="row">
+            <button onclick="add('7')">7</button>
+            <button onclick="add('8')">8</button>
+            <button onclick="add('9')">9</button>
+            <button class="btn-sci" onclick="add('/')">/</button>
+            <button class="btn-sci" onclick="fact()">x!</button>
+        </div>
+
+        <div class="row">
+            <button onclick="add('4')">4</button>
+            <button onclick="add('5')">5</button>
+            <button onclick="add('6')">6</button>
+            <button class="btn-sci" onclick="add('*')">×</button>
+            <button class="btn-sci" onclick="add('(')">(</button>
+        </div>
+
+        <div class="row">
+            <button onclick="add('1')">1</button>
+            <button onclick="add('2')">2</button>
+            <button onclick="add('3')">3</button>
+            <button class="btn-sci" onclick="add('-')">-</button>
+            <button class="btn-sci" onclick="add(')')">)</button>
+        </div>
+
+        <div class="row">
+            <button onclick="add('0')">0</button>
+            <button onclick="add('.')">.</button>
+            <button class="btn-sci" onclick="add('+')">+</button>
+            <button class="btn-equal" onclick="calc()">=</button>
+        </div>
+    </div>
+
+    <script>
+        const screen = document.getElementById('screen');
+        function add(v) { screen.value += v; }
+        function backspace() { screen.value = screen.value.slice(0, -1); }
+        function sci(op) {
+            let v = eval(screen.value) || 0;
+            if(op=='sin') screen.value = Math.sin(v).toFixed(4);
+            if(op=='cos') screen.value = Math.cos(v).toFixed(4);
+            if(op=='tan') screen.value = Math.tan(v).toFixed(4);
+            if(op=='pow') screen.value = Math.pow(v, 2);
+            if(op=='sqrt') screen.value = Math.sqrt(v).toFixed(4);
+            if(op=='log') screen.value = Math.log10(v).toFixed(4);
+        }
+        function fact() {
+            let n = parseInt(screen.value), f = 1;
+            for(let i=1; i<=n; i++) f*=i;
+            screen.value = f;
+        }
+        function calc() {
+            try { screen.value = eval(screen.value); } 
+            catch { screen.value = "Error"; setTimeout(()=>screen.value="", 1000); }
+        }
+    </script>
+</body>
+</html>
